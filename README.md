@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="build/icon.png" alt="Clipboard Logo" width="120" height="120">
+  <img src="build/logo.png" alt="SmartClip Logo" width="120" height="120">
 </p>
 
-<h1 align="center">Clipboard</h1>
+<h1 align="center">SmartClip</h1>
 
 <p align="center">
   <strong>A persistent, privacy-first clipboard manager for Windows</strong>
@@ -132,7 +132,7 @@ I needed a clipboard manager that **remembers everything**, survives restarts, a
 ```
 clipboard-app/
 ├── build/                  # App icons and installer assets
-│   ├── icon.png            # Application icon
+│   ├── logo.png            # Application icon
 │   ├── tray.png            # System tray icon
 │   └── installer.nsh       # NSIS installer script (DPI fix)
 ├── src/
