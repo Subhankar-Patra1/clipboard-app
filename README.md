@@ -180,5 +180,5 @@ This project is licensed under the MIT License.
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/Subhankar-Patr1">Subhankar</a>
+  Made with ❤️ by <a href="https://github.com/Subhankar-Patra1">Subhankar</a>
 </p>
