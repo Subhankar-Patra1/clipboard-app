@@ -1,0 +1,514 @@
+:root {
+  /* Default Dark Theme */
+  --glass-tint: rgba(32, 32, 32, 1.0);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --item-bg: rgba(255, 255, 255, 0.05);
+  --item-hover: rgba(255, 255, 255, 0.1);
+  --accent: #4da3ff;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+  
+  /* Semantic Variables */
+  --header-bg: #1a1a1a;
+  --input-bg: rgba(0, 0, 0, 0.4);
+  --input-border: var(--glass-border);
+  --switcher-bg: rgba(255, 255, 255, 0.05);
+  --item-card-bg: rgba(40, 40, 40, 0.95);
+  --item-card-hover: rgba(50, 50, 50, 0.95);
+  --item-card-selected: rgba(60, 60, 60, 0.95);
+  --queued-bg: rgba(77, 163, 255, 0.1);
+  --button-hover: rgba(255, 255, 255, 0.15);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --danger-bg: #ff4d4f;
+  --danger-text: #ff4d4f;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Light Theme Overrides */
+    --glass-tint: #ffffff;
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --item-bg: rgba(0, 0, 0, 0.05);
+    --item-hover: rgba(0, 0, 0, 0.1);
+    --accent: #007aff;
+    --text-main: #1a1a1a;
+    --text-muted: #555555; /* Darker for better contrast */
+    
+    /* Semantic Variables */
+    --header-bg: #f5f5f5;
+    --input-bg: rgba(255, 255, 255, 1.0);
+    --input-border: #d0d0d0;
+    --switcher-bg: rgba(0, 0, 0, 0.05);
+    --item-card-bg: #ffffff;
+    --item-card-hover: #f0f0f0;
+    --item-card-selected: #e8e8e8;
+    --queued-bg: rgba(0, 122, 255, 0.1);
+    --button-hover: rgba(0, 0, 0, 0.1);
+    --scrollbar-thumb: rgba(0, 0, 0, 0.3); /* Visible in light mode */
+    --danger-text: #dc2626; /* Darker red for text */
+  }
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: transparent;
+  color: var(--text-main);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  padding: 1px; /* Prevents border clipping on all sides */
+  box-sizing: border-box;
+}
+
+.panel {
+  width: 100%;
+  height: 100%;
+  background: var(--glass-tint);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 12px;
+  min-height: 0; /* Fix for flexbox scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 12px 12px 6px 12px; /* Reduced bottom padding */
+  background: var(--header-bg);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  -webkit-app-region: drag;
+  border-radius: 12px 12px 0 0; /* Match panel's top corners */
+}
+
+header input, header button {
+  -webkit-app-region: no-drag;
+}
+
+input.search {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 13px;
+  outline: none;
+}
+
+input.search:focus {
+  border-color: var(--accent);
+}
+
+button {
+  background: var(--item-bg);
+  color: var(--text-main);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--button-hover);
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+button.active {
+  background: var(--accent);
+  color: white;
+}
+
+.sub-header {
+  padding: 6px 12px 8px 12px; /* Reduced top padding */
+  background: var(--header-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 9;
+}
+
+.tab-switcher {
+  display: flex;
+  position: relative;
+  background: var(--switcher-bg);
+  border-radius: 8px;
+  padding: 2px;
+  min-width: 160px; /* Ensure enough room for 'Today' */
+}
+
+.tab-slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc((100% - 4px) / 3);
+  height: calc(100% - 4px);
+  background: var(--accent);
+  border-radius: 6px;
+  transform: translateX(calc(100% * var(--active-index, 0)));
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent !important;
+  color: var(--text-muted);
+  border: none;
+  padding: 6px 12px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: all 0.2s ease;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  color: var(--text-main);
+}
+
+.tab-btn:hover:not(.active) {
+  color: var(--text-main);
+  background: transparent !important;
+}
+
+.filter-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filter-btn:hover {
+  background: var(--item-hover);
+  color: var(--text-main);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.filter-divider {
+  color: var(--glass-border);
+  margin: 0 4px;
+  font-size: 10px;
+}
+
+.queue-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+
+.paste-queue-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.paste-queue-btn:hover {
+  background: #3b93e8;
+}
+
+.clear-all-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--glass-border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.clear-all-btn:hover {
+  background: rgba(255, 77, 79, 0.1);
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}
+
+.private-toggle.active {
+  background: var(--danger-bg) !important;
+  color: white !important;
+  opacity: 1;
+}
+
+.clip-item {
+  background: var(--item-card-bg); /* More opaque to prevent image bleed */
+  margin-bottom: 6px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--glass-border);
+  cursor: default;
+  position: relative; /* For queue badge positioning */
+  gap: 8px;
+}
+
+.drag-handle {
+  cursor: grab;
+  color: var(--text-muted);
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.drag-handle:hover {
+  background: var(--item-hover);
+  color: var(--text-main);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.clip-item:hover {
+  background: var(--item-card-hover);
+}
+
+.clip-item.pinned {
+  border-color: var(--accent);
+}
+
+.clip-item.selected {
+  background: var(--item-card-selected);
+}
+
+.clip-item.focused {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.clip-item.queued {
+  border-color: var(--accent);
+  background: var(--queued-bg);
+}
+
+.queue-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: var(--accent);
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 5;
+}
+
+.clip-content {
+  flex: 1;
+  overflow: hidden;
+  margin-right: 8px;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+.clip-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-main);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased; /* Stabilize text rendering */
+}
+
+.clip-image {
+  max-height: 80px;
+  max-width: 180px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+.clip-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0.6;
+}
+
+.clip-item:hover .clip-actions {
+  opacity: 1;
+}
+
+.footer {
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--text-muted);
+  background: transparent; /* Match panel background */
+  display: flex;
+  justify-content: space-between;
+  -webkit-app-region: drag;
+}
+
+.scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 6px;
+}
+
+/* Removal Animation */
+@keyframes slideOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.clip-item.removing {
+  animation: slideOutRight 0.3s ease-out forwards;
+}
+
+/* Empty State */
+.empty-state {
+  flex: 1; /* Fill remaining space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.empty-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Icons */
+svg {
+  display: block;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Action Buttons in Clip Items */
+.clip-actions button {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clip-actions button:hover {
+  background: var(--item-hover);
+  color: var(--text-main);
+  transform: scale(1.1);
+}
+
+/* Pinned icon highlight */
+.clip-item.pinned .clip-actions button:first-child {
+  color: var(--accent);
+}
+
+.icon-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Win+V Setup Button */
+.winv-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-app-region: no-drag;
+}
+
+.winv-btn:hover {
+  background: #3b93e8;
+  transform: scale(1.05);
+}
