@@ -413,7 +413,7 @@ function App(): JSX.Element {
                             <img 
                                 src={`data:image/png;base64,${bufferToBase64(clip.image_data)}`} 
                                 className="clip-image" 
-                                alt="Clipboard Image" 
+                                alt="SmartClip Image" 
                             />
                         ) : <div>[Image Error]</div>
                     )}

@@ -29,5 +29,6 @@ Thumbs.db
 
 # Temp files for icon generation
 build/splash-source.jpg
+build/screenshot-source-*.png
 scripts/
 store-assets/

@@ -254,7 +254,7 @@ app.whenReady().then(() => {
         app.quit()
     }}
   ])
-  tray.setToolTip('Clipboard')
+  tray.setToolTip('SmartClip')
   tray.setContextMenu(contextMenu)
   tray.on('click', () => {
       showWindowAtCursor()
