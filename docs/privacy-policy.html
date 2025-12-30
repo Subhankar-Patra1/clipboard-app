@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Clipboard Manager</title>
+    <style>
+        :root {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-card: #16213e;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --accent: #6c63ff;
+            --accent-light: #8b85ff;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 0;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(108, 99, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .header .update-date {
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(108, 99, 255, 0.05) 100%);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .highlight-box p {
+            font-size: 1.2rem;
+            color: var(--accent-light);
+            margin: 0;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--accent-light);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(108, 99, 255, 0.3);
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 10px;
+        }
+
+        .no-list li::before {
+            content: "";
+        }
+
+        .no-list li {
+            padding-left: 0;
+        }
+
+        .icon-list li {
+            padding-left: 35px;
+        }
+
+        .icon-list li::before {
+            content: "❌";
+            left: 0;
+            font-size: 1rem;
+        }
+
+        code {
+            background: var(--bg-card);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-light);
+        }
+
+        pre {
+            background: var(--bg-card);
+            padding: 15px 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        pre code {
+            padding: 0;
+            background: transparent;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        th {
+            background: var(--bg-card);
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(108, 99, 255, 0.2);
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin: 10px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin: 5px;
+        }
+
+        .badge-success {
+            background: rgba(74, 222, 128, 0.2);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background: rgba(251, 191, 36, 0.2);
+            color: var(--warning);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🔒 Privacy Policy</h1>
+        <p class="subtitle">Clipboard Manager</p>
+        <p class="update-date">Last Updated: December 30, 2025</p>
+    </header>
+
+    <main class="container">
+        <div class="highlight-box">
+            <p><strong>Your data never leaves your computer.</strong><br>
+            We don't collect, transmit, or have access to any of your clipboard content.</p>
+        </div>
+
+        <section>
+            <h2>📊 Data Collection and Storage</h2>
+            
+            <h3>What Data is Captured</h3>
+            <p>The App monitors your system clipboard and stores:</p>
+            <ul>
+                <li><strong>Text content</strong> that you copy to your clipboard</li>
+                <li><strong>Image content</strong> that you copy to your clipboard</li>
+                <li><strong>Timestamps</strong> of when items were copied</li>
+                <li><strong>Metadata</strong> such as content type and hash values for deduplication</li>
+            </ul>
+
+            <h3>Where Data is Stored</h3>
+            <p>All data is stored <strong>locally on your computer</strong> in a SQLite database file:</p>
+            <pre><code>%APPDATA%/clipboard/clipboard.db</code></pre>
+            <p><strong>No data is ever transmitted to external servers, cloud services, or third parties.</strong></p>
+        </section>
+
+        <section>
+            <h2>🚫 Data We Do NOT Collect</h2>
+            <p>We want to be absolutely clear about what we <strong>do not</strong> do:</p>
+            <ul class="icon-list">
+                <li>We do NOT send your clipboard data to any server</li>
+                <li>We do NOT use analytics or tracking services</li>
+                <li>We do NOT collect personal information</li>
+                <li>We do NOT share data with third parties</li>
+                <li>We do NOT have access to your clipboard history</li>
+                <li>We do NOT use cookies or web tracking</li>
+                <li>We do NOT require an internet connection to function</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🛡️ Privacy Features</h2>
+
+            <div class="card">
+                <h3>Private Mode</h3>
+                <p>The App includes a "Private Mode" feature that, when enabled:</p>
+                <ul>
+                    <li>Temporarily pauses clipboard monitoring</li>
+                    <li>Prevents sensitive content from being stored</li>
+                    <li>Can be toggled on/off at any time from the system tray</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>OTP Auto-Delete</h3>
+                <p>One-Time Passwords (4-8 digit codes) are automatically detected and deleted after 60 seconds for your security.</p>
+            </div>
+
+            <div class="card">
+                <h3>Data Deletion</h3>
+                <p>You can delete your clipboard history at any time:</p>
+                <ul>
+                    <li><strong>Individual items</strong>: Click the delete button on any clip</li>
+                    <li><strong>All unpinned items</strong>: Use the "Clear All" button</li>
+                    <li><strong>Complete deletion</strong>: Delete the database file from your AppData folder</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>⏱️ Data Retention</h2>
+            <ul>
+                <li>Clipboard data is retained indefinitely until you delete it</li>
+                <li>Pinned items are preserved even when using "Clear All"</li>
+                <li>OTP codes are automatically deleted after 60 seconds</li>
+                <li>Uninstalling the App does not automatically delete the database file</li>
+            </ul>
+            <p>To completely remove all data, delete:</p>
+            <pre><code>%APPDATA%/clipboard/</code></pre>
+        </section>
+
+        <section>
+            <h2>🔐 Security</h2>
+
+            <h3>Local Security</h3>
+            <ul>
+                <li>All data is stored locally using SQLite</li>
+                <li>The database file is protected by your Windows user account permissions</li>
+                <li>No network connections are made by the application</li>
+            </ul>
+
+            <h3>Recommendations</h3>
+            <ul>
+                <li>Use Windows login password/PIN to protect your account</li>
+                <li>Enable Private Mode when copying sensitive information</li>
+                <li>Regularly clear clipboard history of sensitive items</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>👶 Children's Privacy</h2>
+            <p>The App does not knowingly collect any data from children. Since all data is stored locally and we have no access to it, we cannot identify the age of users.</p>
+        </section>
+
+        <section>
+            <h2>🔗 Third-Party Services</h2>
+            <p>The App does not integrate with any third-party services. It operates entirely offline and locally.</p>
+        </section>
+
+        <section>
+            <h2>📖 Open Source</h2>
+            <p>Clipboard Manager is open source software. You can review the complete source code at:</p>
+            <p><a href="https://github.com/Subhankar-Patra1/clipboard-app" target="_blank">https://github.com/Subhankar-Patra1/clipboard-app</a></p>
+            <p>This allows you to verify our privacy claims independently.</p>
+        </section>
+
+        <section>
+            <h2>✏️ Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. Any changes will be:</p>
+            <ul>
+                <li>Posted in this document with an updated "Last Updated" date</li>
+                <li>Included in the App's release notes</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>⚖️ Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li><strong>Access</strong>: View all your stored clipboard data within the App</li>
+                <li><strong>Delete</strong>: Remove any or all clipboard entries at any time</li>
+                <li><strong>Export</strong>: Copy your data from the SQLite database</li>
+                <li><strong>Opt-out</strong>: Use Private Mode to stop data collection temporarily</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>📧 Contact</h2>
+            <p>If you have questions about this Privacy Policy, please contact:</p>
+            <div class="card">
+                <p><strong>Developer:</strong> Subhankar Patra</p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/Subhankar-Patra1" target="_blank">https://github.com/Subhankar-Patra1</a></p>
+                <p><strong>Repository:</strong> <a href="https://github.com/Subhankar-Patra1/clipboard-app" target="_blank">https://github.com/Subhankar-Patra1/clipboard-app</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>📋 Summary</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>Our Approach</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data Storage</td>
+                        <td><span class="badge badge-success">100% Local (SQLite)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Cloud Sync</td>
+                        <td><span class="badge badge-success">None</span></td>
+                    </tr>
+                    <tr>
+                        <td>Analytics</td>
+                        <td><span class="badge badge-success">None</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tracking</td>
+                        <td><span class="badge badge-success">None</span></td>
+                    </tr>
+                    <tr>
+                        <td>Internet Required</td>
+                        <td><span class="badge badge-success">No</span></td>
+                    </tr>
+                    <tr>
+                        <td>Data Access</td>
+                        <td><span class="badge badge-success">Only You</span></td>
+                    </tr>
+                    <tr>
+                        <td>Open Source</td>
+                        <td><span class="badge badge-success">Yes</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p><strong>Your clipboard data belongs to you and stays with you.</strong></p>
+        <p>© 2025 Clipboard Manager by <a href="https://github.com/Subhankar-Patra1">Subhankar Patra</a></p>
+    </footer>
+</body>
+</html>

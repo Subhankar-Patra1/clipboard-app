@@ -1,19 +1,32 @@
 {
   "name": "clipboard",
-  "productName": "Clipboard",
+  "productName": "Clipboard Manager",
   "version": "1.0.0",
   "description": "A persistent, privacy-first clipboard manager",
+  "author": {
+    "name": "Subhankar Patra",
+    "url": "https://github.com/Subhankar-Patra1"
+  },
+  "homepage": "https://github.com/Subhankar-Patra1/clipboard-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Subhankar-Patra1/clipboard-app.git"
+  },
+  "license": "MIT",
   "main": "./out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "dist": "npm run build && electron-builder",
+    "dist:appx": "npm run build && electron-builder --win appx",
+    "generate-icons": "node scripts/generate-store-icons.js",
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
-    "appId": "com.clipboard.app",
-    "productName": "Clipboard",
+    "appId": "com.subhankar.clipboardmanager",
+    "productName": "Clipboard Manager",
+    "copyright": "Copyright © 2024 Subhankar Patra",
     "directories": {
       "output": "dist"
     },
@@ -33,12 +46,22 @@
         }
       ]
     },
+    "appx": {
+      "identityName": "REPLACE_WITH_PARTNER_CENTER_IDENTITY",
+      "publisher": "CN=REPLACE_WITH_YOUR_PUBLISHER_ID",
+      "publisherDisplayName": "Subhankar Patra",
+      "applicationId": "ClipboardManager",
+      "displayName": "Clipboard Manager",
+      "languages": ["en-US"],
+      "showNameOnTiles": true,
+      "backgroundColor": "#1a1a2e"
+    },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Clipboard"
+      "shortcutName": "Clipboard Manager"
     }
   },
   "dependencies": {
@@ -65,6 +88,7 @@
     "electron-builder": "^26.0.12",
     "electron-rebuild": "^3.2.9",
     "electron-vite": "^2.0.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.3.3",
     "vite": "^5.0.12"
   }

@@ -26,3 +26,7 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Temp files for icon generation
+build/splash-source.jpg
+scripts/get-color.js
