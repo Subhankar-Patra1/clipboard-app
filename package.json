@@ -1,6 +1,6 @@
 {
-  "name": "clipboard",
-  "productName": "Clipboard Manager",
+  "name": "smartclip",
+  "productName": "SmartClip",
   "version": "1.0.0",
   "description": "A persistent, privacy-first clipboard manager",
   "author": {
@@ -24,9 +24,9 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
-    "appId": "com.subhankar.clipboardmanager",
-    "productName": "Clipboard Manager",
-    "copyright": "Copyright © 2024 Subhankar Patra",
+    "appId": "com.subhankar.smartclip",
+    "productName": "SmartClip",
+    "copyright": "Copyright © 2025 Subhankar Patra",
     "directories": {
       "output": "dist"
     },
@@ -47,11 +47,11 @@
       ]
     },
     "appx": {
-      "identityName": "REPLACE_WITH_PARTNER_CENTER_IDENTITY",
-      "publisher": "CN=REPLACE_WITH_YOUR_PUBLISHER_ID",
-      "publisherDisplayName": "Subhankar Patra",
-      "applicationId": "ClipboardManager",
-      "displayName": "Clipboard Manager",
+      "identityName": "Spynox.SmartClip",
+      "publisher": "CN=39E06D7A-12A9-4473-9A7F-11D035A8CCDA",
+      "publisherDisplayName": "Spynox",
+      "applicationId": "SmartClip",
+      "displayName": "SmartClip",
       "languages": ["en-US"],
       "showNameOnTiles": true,
       "backgroundColor": "#1a1a2e"
@@ -61,7 +61,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Clipboard Manager"
+      "shortcutName": "SmartClip"
     }
   },
   "dependencies": {
