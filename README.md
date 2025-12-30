@@ -18,6 +18,21 @@
 
 ---
 
+## 💡 Why I Built This
+
+Windows has a built-in clipboard history (`Win + V`), but it has some frustrating limitations:
+
+| Problem | Impact |
+|---------|--------|
+| **Limited Storage** | Only stores ~25 items. Copy a few more things and your older clips are gone forever. |
+| **Lost on Restart** | All clipboard history is erased when you restart or shut down your PC. |
+| **No Pinning** | Can't permanently save important clips without them getting pushed out. |
+| **Basic Search** | No fuzzy search, no regex, no advanced filtering. |
+
+I needed a clipboard manager that **remembers everything**, survives restarts, and gives me powerful tools to find what I copied days ago. So I built one.
+
+---
+
 ## ✨ Features
 
 ### 🔒 Privacy-First Design
